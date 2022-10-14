@@ -21,48 +21,48 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaycolor,
-        elevation: 10,
-      ),
+      appBar:
+          AppBar(backgroundColor: primaycolor, elevation: 10, actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.search),
+          tooltip: 'Show Snac',
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Search Your catagory')));
+          },
+        ),
+      ]),
       drawer: const CustomDrawer(),
       body: Column(
         children: [
           Expanded(
-              child:
-                  // ListView(
-                  //   children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     Container(
-                  //       height: 130,
-                  //       child: Image.asset(Constants.imageAsset('first.jpg')),
-                  //     ),
-                  //     Container(width: 50, child: const Text('A0100-120X40')),
-                  //   ],
-                  // ),
-                  //   ],
-                  // ),
-                  ListView.separated(
+              child: ListView.separated(
+            physics: const BouncingScrollPhysics(),
             itemCount: 10,
             separatorBuilder: (BuildContext context, int index) =>
                 const Divider(),
             itemBuilder: (BuildContext context, int index) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 130,
-                    child: Image.asset(
-                      Constants.imageAsset('first.jpg'),
+              return Container(
+                padding: const EdgeInsets.all(10),
+                // color: Colors.red,
+                width: size.width - 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 130,
+                      child: Image.asset(
+                        Constants.imageAsset('first.jpg'),
+                      ),
                     ),
-                  ),
-                  Container(
-                    width: 50,
-                    child: const Text('A0100-120X40'),
-                  ),
-                ],
+                    Container(
+                      //color: Colors.red,
+                      width: 50,
+                      child: const Text('A0100-120X40'),
+                    ),
+                    SizedBox()
+                  ],
+                ),
               );
             },
           ))

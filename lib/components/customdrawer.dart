@@ -29,7 +29,7 @@ class CustomDrawer extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            UtilFunction.navigateTo(context, const AdminPage());
+            UtilFunction.navigateTo(context, const MyLogin());
           },
           child: const Text(
             "Admin Page",

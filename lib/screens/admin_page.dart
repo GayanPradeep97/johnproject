@@ -1,17 +1,160 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:johnproject/screens/homepage.dart';
+import 'package:johnproject/utility/constant.dart';
 
-class AdminPage extends StatefulWidget {
-  const AdminPage({super.key});
+import 'admin_custom_page.dart';
+
+class MyLogin extends StatefulWidget {
+  const MyLogin({Key? key}) : super(key: key);
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  _MyLoginState createState() => _MyLoginState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _MyLoginState extends State<MyLogin> {
+  final _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          Container(),
+          Container(
+            padding: const EdgeInsets.only(left: 35, top: 130),
+            child: const Text(
+              'Welcome\nJohn',
+              style: TextStyle(color: Colors.white, fontSize: 33),
+            ),
+          ),
+          SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 35, right: 35),
+                    child: Column(
+                      children: [
+                        // TextField(
+                        //   style: TextStyle(color: Colors.black),
+                        //   decoration: InputDecoration(
+                        //       fillColor: Colors.grey.shade100,
+                        //       filled: true,
+                        //       hintText: "Email",
+                        //       border: OutlineInputBorder(
+                        //         borderRadius: BorderRadius.circular(10),
+                        //       )),
+                        // ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        TextField(
+                          style: const TextStyle(),
+                          obscureText: true,
+                          controller: _password,
+                          decoration: InputDecoration(
+                              fillColor: Colors.grey.shade100,
+                              filled: true,
+                              hintText: "Password",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: const Color(0xff4c505b),
+                              child: IconButton(
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomeScreen()));
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_back,
+                                  )),
+                            ),
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: const Color(0xff4c505b),
+                              child: IconButton(
+                                  color: Colors.white,
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                AdminCustomPage()));
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_forward,
+                                  )),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // TextButton(
+                            //   onPressed: () {
+                            //     Navigator.pushNamed(context, 'register');
+                            //   },
+                            //   // child: Text(
+                            //   //   'Sign Up',
+                            //   //   textAlign: TextAlign.left,
+                            //   //   style: TextStyle(
+                            //   //       decoration: TextDecoration.underline,
+                            //   //       color: Color(0xff4c505b),
+                            //   //       fontSize: 18),
+                            //   // ),
+                            //   style: ButtonStyle(),
+                            // ),
+                            TextButton(
+                                onPressed: () {},
+                                child: const Text(
+                                  'Forgot Password',
+                                  style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Color(0xff4c505b),
+                                    fontSize: 18,
+                                  ),
+                                )),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool inputValidate() {
+    var isValid = false;
+    if (_password.text.trim().isEmpty) {
+      isValid = false;
+    } else {
+      isValid = true;
+    }
+    return isValid;
   }
 }
