@@ -36,7 +36,8 @@ class CustomDrawer extends StatelessWidget {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
-                fontFamily: "Streetbrush"),
+                fontFamily: "Streetbrush",
+                color: Colors.black),
           ),
         )
       ]),

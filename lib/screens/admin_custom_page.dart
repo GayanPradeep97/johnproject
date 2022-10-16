@@ -75,113 +75,105 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Items'),
         backgroundColor: primaycolor,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const Text(
-              'Choose Your Photo',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                myAlert();
-              },
-              child: const Text('Upload Photo'),
-            ),
-            const SizedBox(height: 20),
-            image != null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.file(
-                      //to show image, you type like this.
-                      File(image!.path),
-                      fit: BoxFit.cover,
-                      width: MediaQuery.of(context).size.width,
-                      height: 200,
+        child: Container(
+          margin: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                'Choose Your Photo',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  myAlert();
+                },
+                child: const Text('Upload Photo'),
+              ),
+              const SizedBox(height: 20),
+              image != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.file(
+                        //to show image, you type like this.
+                        File(image!.path),
+                        fit: BoxFit.cover,
+                        width: MediaQuery.of(context).size.width,
+                        height: 200,
+                      ),
+                    )
+                  : const Text(
+                      "No Image",
+                      style: TextStyle(fontSize: 15),
                     ),
-                  )
-                : const Text(
-                    "No Image",
-                    style: TextStyle(fontSize: 15),
-                  ),
-            const SizedBox(
-              height: 40,
-            ),
-            const Text(
-              'Add Item Name',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            Container(
-              width: 300,
-              child: TextField(
-                style: const TextStyle(),
-                //obscureText: true,
-                //controller: _password,
-                decoration: InputDecoration(
-                    fillColor: Colors.grey.shade100,
-                    filled: true,
-                    hintText: "Item Name",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    )),
+              const SizedBox(
+                height: 40,
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            const Text(
-              'Description',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(
-              width: 300,
-              height: 100,
-              child: TextField(
-                style: const TextStyle(),
-                //obscureText: true,
-                //controller: _password,
-                decoration: InputDecoration(
-                    fillColor: Colors.grey.shade100,
-                    filled: true,
-                    hintText: "Item Description",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    )),
+              const Text(
+                'Add Item Name',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  width: 100,
+              Container(
+                width: Size.width,
+                child: TextField(
+                  style: const TextStyle(),
+                  //obscureText: true,
+                  //controller: _password,
+                  decoration: InputDecoration(
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      hintText: "Item Name",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
                 ),
-                SizedBox(
-                  width: 65,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              const Text(
+                'Description',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(
+                width: Size.width,
+                height: 100,
+                child: TextField(
+                  style: const TextStyle(),
+                  //obscureText: true,
+                  //controller: _password,
+                  decoration: InputDecoration(
+                      fillColor: Colors.grey.shade100,
+                      filled: true,
+                      hintText: "Item Description",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              SizedBox(
+                  width: Size.width,
                   height: 65,
                   child: ElevatedButton(
                       onPressed: () {},
-                      child: Image.asset(Constants.imageAsset('add.png'))),
-                ),
-              ],
-            )
-          ],
-
-          // SizedBox(
-          //   height: 10,
-          // ),
-          //if image not null show the image
-          //if image null show text
+                      child: const Text(
+                        'Add Item',
+                        style: TextStyle(fontSize: 20),
+                      ))),
+            ],
+          ),
         ),
       ),
     );
