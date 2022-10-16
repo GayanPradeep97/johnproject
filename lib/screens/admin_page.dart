@@ -14,6 +14,7 @@ class MyLogin extends StatefulWidget {
 
 class _MyLoginState extends State<MyLogin> {
   final _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +53,7 @@ class _MyLoginState extends State<MyLogin> {
                         const SizedBox(
                           height: 30,
                         ),
+
                         TextField(
                           style: const TextStyle(),
                           obscureText: true,
@@ -65,7 +67,7 @@ class _MyLoginState extends State<MyLogin> {
                               )),
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -148,13 +150,13 @@ class _MyLoginState extends State<MyLogin> {
     );
   }
 
-  bool inputValidate() {
-    var isValid = false;
-    if (_password.text.trim().isEmpty) {
-      isValid = false;
-    } else {
-      isValid = true;
-    }
-    return isValid;
-  }
+  // bool inputValidate() {
+  //   var isValid = false;
+  //   if (_password.text.trim().isEmpty) {
+  //     isValid = false;
+  //   } else {
+  //     isValid = true;
+  //   }
+  //   return isValid;
+  // }
 }
