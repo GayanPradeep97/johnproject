@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: primaycolor,
       appBar:
           AppBar(backgroundColor: primaycolor, elevation: 10, actions: <Widget>[
         IconButton(
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (BuildContext context, int index) {
               return Container(
                 padding: const EdgeInsets.all(10),
-                // color: Colors.red,
+                color: Colors.white,
                 width: size.width - 20,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -56,9 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Container(
-                      //color: Colors.red,
+                      //color: Colors.black,
                       width: 50,
-                      child: const Text('A0100-120X40'),
+                      child: const Text(
+                        'A0100-120X40',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                     SizedBox()
                   ],

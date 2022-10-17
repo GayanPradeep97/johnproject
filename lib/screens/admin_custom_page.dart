@@ -141,7 +141,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                 height: 40,
               ),
               const Text(
-                'Description',
+                'Dimensions',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(
@@ -154,7 +154,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                   decoration: InputDecoration(
                       fillColor: Colors.grey.shade100,
                       filled: true,
-                      hintText: "Item Description",
+                      hintText: "Item Dimensions",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       )),
