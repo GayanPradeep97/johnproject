@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:johnproject/components/custom_dialog.dart';
 import 'package:johnproject/screens/homepage.dart';
 import 'package:johnproject/utility/constant.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'admin_custom_page.dart';
 
@@ -94,11 +95,20 @@ class _MyLoginState extends State<MyLogin> {
                               child: IconButton(
                                   color: Colors.white,
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                AdminCustomPage()));
+                                    print("object");
+                                    if (_password.text == "12345") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const AdminCustomPage()));
+                                    } else {
+                                      CustomAwesomDialog().dialogBox(
+                                          context,
+                                          "Error...!",
+                                          "Please enter correct password...!",
+                                          DialogType.ERROR);
+                                    }
                                   },
                                   icon: const Icon(
                                     Icons.arrow_forward,
