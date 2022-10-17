@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:johnproject/components/custom_dialog.dart';
 import 'package:johnproject/controller/item_controller.dart';
+import 'package:johnproject/screens/admin_custom_page.dart';
 import 'package:johnproject/screens/homepage.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:johnproject/utility/uttility_function.dart';
@@ -20,7 +21,7 @@ class ItemProvider extends ChangeNotifier {
 
   bool get isloding => _isLoading;
 
-  Future<void> startAddContactDetails(BuildContext context, File file) async {
+  Future<void> startAddItemDetails(BuildContext context, File file) async {
     try {
       if (inputValidation()) {
         setLoading(true);
@@ -39,8 +40,8 @@ class ItemProvider extends ChangeNotifier {
           CustomAwesomDialog().dialogBox(context, "Success...!",
               "Congratulations...! Successfully added.", DialogType.SUCCES);
 
-          Future.delayed(Duration(seconds: 2), () {
-            UtilFunction.pushRemoveNavigator(context, HomeScreen());
+          Future.delayed(const Duration(seconds: 2), () {
+            UtilFunction.pushRemoveNavigator(context, const AdminCustomPage());
             cleardata();
           });
         });

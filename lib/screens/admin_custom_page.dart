@@ -182,9 +182,8 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                       width: Size.width,
                       height: 65,
                       child: (value.isloding)
-                          ? Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 145),
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 145),
                               child: CircularProgressIndicator(
                                 color: Colors.blue,
                               ),
@@ -192,7 +191,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                           : ElevatedButton(
                               onPressed: () {
                                 if (isselectimage) {
-                                  value.startAddContactDetails(
+                                  value.startAddItemDetails(
                                       context, File(image!.path));
                                 } else {
                                   CustomAwesomDialog().dialogBox(
@@ -202,7 +201,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                                       DialogType.ERROR);
                                 }
                               },
-                              child: Text(
+                              child: const Text(
                                 'Add Item',
                                 style: TextStyle(fontSize: 20),
                               ))),
