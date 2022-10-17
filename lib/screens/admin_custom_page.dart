@@ -5,7 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:johnproject/components/custom_dialog.dart';
 import 'package:johnproject/providers/item_provider.dart';
+import 'package:johnproject/screens/homepage.dart';
 import 'package:johnproject/utility/constant.dart';
+import 'package:johnproject/utility/uttility_function.dart';
 import '../utility/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:logger/logger.dart';
@@ -89,6 +91,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
   Widget build(BuildContext context) {
     final Size = MediaQuery.of(context).size;
     return Scaffold(
+        backgroundColor: primaycolor,
         appBar: AppBar(
           title: const Text('Add New Items'),
           backgroundColor: primaycolor,
@@ -103,7 +106,10 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                   const SizedBox(height: 20),
                   const Text(
                     'Choose Your Photo',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: kWhite),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -126,14 +132,17 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                         )
                       : const Text(
                           "No Image",
-                          style: TextStyle(fontSize: 15),
+                          style: TextStyle(fontSize: 15, color: kWhite),
                         ),
                   const SizedBox(
                     height: 40,
                   ),
                   const Text(
                     'Add Item Name',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: kWhite),
                   ),
                   Container(
                     width: Size.width,
@@ -156,7 +165,10 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                   ),
                   const Text(
                     'Dimensions',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: kWhite),
                   ),
                   SizedBox(
                     width: Size.width,
@@ -176,7 +188,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 25,
                   ),
                   Container(
                       width: Size.width,
@@ -205,6 +217,23 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                                 'Add Item',
                                 style: TextStyle(fontSize: 20),
                               ))),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            UtilFunction.navigateTo(
+                                context, const HomeScreen());
+                          },
+                          child: const Text(
+                            'Go Back HomePage',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w800),
+                          )),
+                    ],
+                  )
                 ],
               ),
             );

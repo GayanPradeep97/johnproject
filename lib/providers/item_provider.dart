@@ -41,7 +41,6 @@ class ItemProvider extends ChangeNotifier {
               "Congratulations...! Successfully added.", DialogType.SUCCES);
 
           Future.delayed(const Duration(seconds: 2), () {
-            UtilFunction.pushRemoveNavigator(context, const AdminCustomPage());
             cleardata();
           });
         });
