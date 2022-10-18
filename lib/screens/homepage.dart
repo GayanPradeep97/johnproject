@@ -26,15 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
           context: context,
           builder: (context) => ElasticIn(
             child: AlertDialog(
-              title: Text('Exit App'),
-              content: Text('Do you want to really exit an App'),
+              title: const Text('Exit App'),
+              content: const Text('Do you want to really exit an App'),
               actions: [
                 ElevatedButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text('No')),
+                    child: const Text('No')),
                 ElevatedButton(
                     onPressed: () => Navigator.of(context).pop(true),
-                    child: Text('Yes'))
+                    child: const Text('Yes'))
               ],
             ),
           ),

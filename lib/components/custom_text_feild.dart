@@ -24,17 +24,17 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
             hintText: 'Search',
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.search,
               color: Color(0xff838383),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: Colors.blue),
+              borderSide: const BorderSide(color: Colors.blue),
             ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide(color: Colors.red))),
+                borderSide: const BorderSide(color: Colors.red))),
       ),
     );
   }
