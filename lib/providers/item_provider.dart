@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:johnproject/components/custom_dialog.dart';
 import 'package:johnproject/controller/item_controller.dart';
@@ -21,7 +20,7 @@ class ItemProvider extends ChangeNotifier {
 
   bool get isloding => _isLoading;
 
-  Future<void> startAddItemDetails(BuildContext context, File file) async {
+  Future<bool> startAddItemDetails(BuildContext context, File file) async {
     try {
       if (inputValidation()) {
         setLoading(true);
@@ -46,6 +45,7 @@ class ItemProvider extends ChangeNotifier {
         });
 
         setLoading();
+        return true;
       } else {
         CustomAwesomDialog().dialogBox(
             context, "Error!", "Please check fields.", DialogType.SUCCES);
@@ -54,6 +54,7 @@ class ItemProvider extends ChangeNotifier {
       setLoading();
       Logger().e(e);
     }
+    return false;
   }
 
   bool inputValidation() {

@@ -8,6 +8,7 @@ import 'package:johnproject/utility/app_colors.dart';
 import 'package:johnproject/utility/constant.dart';
 import 'package:johnproject/utility/uttility_function.dart';
 import 'package:johnproject/controller/item_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 import '../components/customdrawer.dart';
@@ -42,6 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
         false;
   }
 
+  String search = "";
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -50,21 +53,49 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: primaycolor,
         appBar: AppBar(
-            backgroundColor: primaycolor,
-            elevation: 10,
-            actions: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.search),
-                tooltip: 'Show Snac',
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Search Your catagory')));
-                },
-              ),
-            ]),
+          backgroundColor: primaycolor,
+          title: Row(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              //SizedBox(width: 100),
+              Text("JOHN DECORATIUNI"),
+            ],
+          ),
+          elevation: 5,
+        ),
         drawer: const CustomDrawer(),
         body: Column(
           children: [
+            SizedBox(height: 10),
+            SizedBox(
+              // width: 200,
+              height: 50,
+              child: TextField(
+                //controller: searchController,
+                onChanged: (text) {
+                  setState(() {
+                    search = text;
+                  });
+                },
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                decoration: InputDecoration(
+                  //prefixIcon: widget,
+                  fillColor: Colors.white,
+                  filled: true,
+                  hintText: "Search",
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(15)),
+                  // focusedBorder: OutlineInputBorder(
+                  //     borderSide: BorderSide(color: Colors.black),
+                  //     borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: StreamBuilder(
                 stream: ItemController().getItemFromFirebase(),
@@ -73,35 +104,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? Center(
                           child: CircularProgressIndicator(),
                         )
-                      : ListView.separated(
-                          separatorBuilder: (context, index) => Container(
-                            height: 20,
-                          ),
+                      : ListView.builder(
+                          // separatorBuilder: (context, index) => Container(
+                          //   height: 20,
+                          // ),
                           physics: const BouncingScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             var data = snapshot.data![index].name;
-                            return Card(
-                              size: size,
-                              model: snapshot.data![index],
-                            );
+                            // return Card(
+                            //   size: size,
+                            //   model: snapshot.data![index],
+                            // );
 
-                            // if (search.isEmpty) {
-                            //   return ContactCard(
-                            //     size: size,
-                            //     model: snapshot.data![index],
-                            //     num: snapshot.data!.length - index,
-                            //   );
-                            // } else if (data
-                            //     .toString()
-                            //     .startsWith(search.toLowerCase())) {
-                            //   return ContactCard(
-                            //     size: size,
-                            //     model: snapshot.data![index],
-                            //     num: snapshot.data!.length - index,
-                            //   );
-                            //}
-                            //return Container();
+                            if (search.isEmpty) {
+                              return Card(
+                                size: size,
+                                model: snapshot.data![index],
+                              );
+                            } else if (data
+                                .toString()
+                                .startsWith(search.toLowerCase())) {
+                              return Card(
+                                size: size,
+                                model: snapshot.data![index],
+                              );
+                            }
+                            return Container(
+                              height: 0,
+                            );
                           },
                         );
 
@@ -166,52 +197,101 @@ class Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      color: Colors.white,
-      width: size.width - 20,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: () {
+        UtilFunction.navigateTo(context, DetailScreen(linkk: model.image));
+
+        // Navigator.push(context, MaterialPageRoute(builder: (_) {
+        //   return DetailScreen(linkk: model.image);
+        // }));
+      },
+      child: Column(
         children: [
           Container(
-            height: 130,
-            width: 200,
-            child: Image.network(
-              fit: BoxFit.fill,
-              model.image.toString(),
-              height: 295,
-              width: 310,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) {
-                  return child;
-                }
-                return Container(
-                  height: 295,
-                  width: 310,
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.amber,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+            padding: const EdgeInsets.all(10),
+            //color: Colors.white,
+            // width: size.width - 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 130,
+                  width: 200,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      fit: BoxFit.fill,
+                      model.image.toString(),
+                      height: 295,
+                      width: 310,
+                      loadingBuilder: (BuildContext context, Widget child,
+                          ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+                        return Container(
+                          height: 295,
+                          width: 310,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.blue,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                );
-              },
+                  // Image.asset(
+                  //   Constants.imageAsset('first.jpg'),
+                  // ),
+                ),
+                Container(
+                  //color: Colors.black,
+                  //width: 50,
+                  child: Text(
+                    "Name : ${model.name.toString()} \nDimensions : ${model.diamansion.toString()}",
+                    //'A0100-120X40',
+                    style: GoogleFonts.getFont('Poppins',
+                        fontSize: 15, fontWeight: FontWeight.w500),
+                    //style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox()
+              ],
             ),
-            // Image.asset(
-            //   Constants.imageAsset('first.jpg'),
-            // ),
           ),
-          Container(
-            //color: Colors.black,
-            width: 50,
-            child: Text(
-              "${model.name.toString()}-\n${model.diamansion.toString()}",
-              //'A0100-120X40',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          SizedBox()
+          SizedBox(
+            height: 10,
+          )
         ],
+      ),
+    );
+  }
+}
+
+class DetailScreen extends StatelessWidget {
+  DetailScreen({required this.linkk});
+  String? linkk;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: GestureDetector(
+        child: Center(
+          child: Hero(
+            tag: 'imageHero',
+            child: Image.network(
+              linkk!,
+            ),
+          ),
+        ),
+        onTap: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }

@@ -201,10 +201,16 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                               ),
                             )
                           : ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (isselectimage) {
-                                  value.startAddItemDetails(
+                                  bool a = await value.startAddItemDetails(
                                       context, File(image!.path));
+                                  if (a) {
+                                    setState(() {
+                                      image = null;
+                                      isselectimage = false;
+                                    });
+                                  }
                                 } else {
                                   CustomAwesomDialog().dialogBox(
                                       context,
