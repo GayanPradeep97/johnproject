@@ -273,18 +273,19 @@ class Card extends StatelessWidget {
                   //   Constants.imageAsset('first.jpg'),
                   // ),
                 ),
-                Container(
-                  //color: Colors.black,
-                  //width: 50,
-                  child: Text(
-                    "${model.catagory.toString()} \n ${model.name.toString()} \n ${model.diamansion.toString()} ",
-                    //'A0100-120X40',
-                    style: GoogleFonts.getFont('Poppins',
-                        fontSize: 15, fontWeight: FontWeight.w500),
-                    //style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                Column(
+                  children: [
+                    Text(
+                      "${model.catagory.toString()} \n ${model.name.toString()} \n ${model.diamansion.toString()} ",
+                      //'A0100-120X40',
+                      style: GoogleFonts.getFont('Poppins',
+                          fontSize: 15, fontWeight: FontWeight.w500),
+                      //style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextButton(onPressed: () {}, child: const Text('Delete'))
+                  ],
                 ),
-                const SizedBox()
+                const SizedBox(),
               ],
             ),
           ),

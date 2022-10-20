@@ -249,6 +249,33 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                                 'Add Item',
                                 style: TextStyle(fontSize: 20),
                               ))),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: Size.width,
+                    height: 65,
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          if (isselectimage) {
+                            bool a = await value.startAddItemDetails(
+                                context, File(image!.path));
+                            if (a) {
+                              setState(() {
+                                image = null;
+                                isselectimage = false;
+                              });
+                            }
+                          } else {
+                            CustomAwesomDialog().dialogBox(context, "Error...!",
+                                "Please upload photo...!", DialogType.ERROR);
+                          }
+                        },
+                        child: const Text(
+                          'Delete Item',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
