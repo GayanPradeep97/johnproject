@@ -16,6 +16,7 @@ class ItemController {
     String name,
     String dimention,
     File img,
+    String catagory,
   ) async {
     DateTime timeNow = DateTime.now();
 
@@ -34,6 +35,7 @@ class ItemController {
         'id': docId,
         'time': timeNow,
         'dimention': dimention,
+        'catagory': catagory,
       });
     }
 

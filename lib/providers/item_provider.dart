@@ -10,6 +10,9 @@ import 'package:logger/logger.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ItemProvider extends ChangeNotifier {
+  final _catagory = TextEditingController();
+  TextEditingController get catagoryController => _catagory;
+
   final _name = TextEditingController();
   TextEditingController get nameController => _name;
 
@@ -30,6 +33,7 @@ class ItemProvider extends ChangeNotifier {
           _name.text,
           _diamention.text,
           file,
+          _catagory.text,
         )
             .whenComplete(() {
           // UserProvider().fetchSingleUser(
@@ -59,7 +63,9 @@ class ItemProvider extends ChangeNotifier {
 
   bool inputValidation() {
     var isValid = false;
-    if (_name.text.isEmpty || _diamention.text.isEmpty) {
+    if (_name.text.isEmpty ||
+        _diamention.text.isEmpty ||
+        _catagory.text.isEmpty) {
       isValid = false;
     } else {
       isValid = true;
@@ -75,5 +81,6 @@ class ItemProvider extends ChangeNotifier {
   void cleardata() {
     _name.clear();
     _diamention.clear();
+    _catagory.clear();
   }
 }

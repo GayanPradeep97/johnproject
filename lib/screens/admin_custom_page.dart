@@ -138,6 +138,32 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     height: 40,
                   ),
                   const Text(
+                    'Category Name',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: kWhite),
+                  ),
+                  Container(
+                    width: Size.width,
+                    child: TextField(
+                      controller: value.catagoryController,
+                      style: const TextStyle(),
+                      //obscureText: true,
+                      //controller: _password,
+                      decoration: InputDecoration(
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          hintText: "Category Name",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  const Text(
                     'Add Item Name',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,

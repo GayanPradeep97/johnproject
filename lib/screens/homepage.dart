@@ -9,6 +9,8 @@ import 'package:johnproject/utility/constant.dart';
 import 'package:johnproject/utility/uttility_function.dart';
 import 'package:johnproject/controller/item_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
+
 //import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 import '../components/customdrawer.dart';
@@ -19,6 +21,8 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
+bool isclicked = false;
 
 class _HomeScreenState extends State<HomeScreen> {
   Future<bool> initBackButton() async {
@@ -34,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () => Navigator.of(context).pop(),
                     child: const Text('No')),
                 ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(true),
+                    onPressed: () => SystemNavigator.pop(),
                     child: const Text('Yes'))
               ],
             ),
@@ -55,10 +59,18 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           backgroundColor: primaycolor,
           title: Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               //SizedBox(width: 100),
-              Text("JOHN DECORATIUNI"),
+              const Text("JOHN DECORATIUNI"),
+
+              IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isclicked = true;
+                    });
+                  },
+                  icon: const Icon(Icons.search))
             ],
           ),
           elevation: 5,
@@ -66,34 +78,46 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: const CustomDrawer(),
         body: Column(
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             SizedBox(
               // width: 200,
-              height: 50,
-              child: TextField(
-                //controller: searchController,
-                onChanged: (text) {
-                  setState(() {
-                    search = text;
-                  });
-                },
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  //prefixIcon: widget,
-                  fillColor: Colors.white,
-                  filled: true,
-                  hintText: "Search",
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15)),
-                  // focusedBorder: OutlineInputBorder(
-                  //     borderSide: BorderSide(color: Colors.black),
-                  //     borderRadius: BorderRadius.circular(15)),
-                ),
-              ),
+              //height: 50,
+              child: (!isclicked)
+                  ? const SizedBox()
+                  : TextField(
+                      //controller: searchController,
+                      onChanged: (text) {
+                        setState(() {
+                          search = text;
+                        });
+                      },
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
+                      decoration: InputDecoration(
+                        //prefixIcon: widget,
+                        fillColor: Colors.white,
+                        filled: true,
+                        hintText: "Search",
+                        //prefixIcon: const Icon(Icons.search),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                search = "";
+                                isclicked = false;
+                              });
+                            },
+                            icon: const Icon(Icons.close)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15)),
+                        // focusedBorder: OutlineInputBorder(
+                        //     borderSide: BorderSide(color: Colors.black),
+                        //     borderRadius: BorderRadius.circular(15)),
+                      ),
+                    ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -101,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 stream: ItemController().getItemFromFirebase(),
                 builder: (context, AsyncSnapshot<List<ItemModel>> snapshot) {
                   return (snapshot.connectionState == ConnectionState.waiting)
-                      ? Center(
+                      ? const Center(
                           child: CircularProgressIndicator(),
                         )
                       : ListView.builder(
@@ -236,7 +260,7 @@ class Card extends StatelessWidget {
                         return Container(
                           height: 295,
                           width: 310,
-                          child: Center(
+                          child: const Center(
                             child: CircularProgressIndicator(
                               color: Colors.blue,
                             ),
@@ -253,18 +277,18 @@ class Card extends StatelessWidget {
                   //color: Colors.black,
                   //width: 50,
                   child: Text(
-                    "Name : ${model.name.toString()} \nDimensions : ${model.diamansion.toString()}",
+                    "${model.catagory.toString()} \n ${model.name.toString()} \n ${model.diamansion.toString()} ",
                     //'A0100-120X40',
                     style: GoogleFonts.getFont('Poppins',
                         fontSize: 15, fontWeight: FontWeight.w500),
                     //style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox()
+                const SizedBox()
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           )
         ],
