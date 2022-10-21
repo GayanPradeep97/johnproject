@@ -139,7 +139,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     height: 40,
                   ),
                   const Text(
-                    'Category Name',
+                    'Catogry Name',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -155,7 +155,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                       decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
-                          hintText: "Category Name",
+                          hintText: "Catogry Name",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           )),
