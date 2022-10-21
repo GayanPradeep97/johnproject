@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:johnproject/components/custom_dialog.dart';
 import 'package:johnproject/providers/item_provider.dart';
+import 'package:johnproject/screens/delete_page.dart';
 import 'package:johnproject/screens/homepage.dart';
 import 'package:johnproject/utility/constant.dart';
 import 'package:johnproject/utility/uttility_function.dart';
@@ -161,7 +162,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
                   const Text(
                     'Add Item Name',
@@ -187,7 +188,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
                   const Text(
                     'Dimensions',
@@ -214,7 +215,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 25,
+                    height: 5,
                   ),
                   Container(
                       width: Size.width,
@@ -249,35 +250,23 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                                 'Add Item',
                                 style: TextStyle(fontSize: 20),
                               ))),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    width: Size.width,
-                    height: 65,
-                    child: ElevatedButton(
-                        onPressed: () async {
-                          if (isselectimage) {
-                            bool a = await value.startAddItemDetails(
-                                context, File(image!.path));
-                            if (a) {
-                              setState(() {
-                                image = null;
-                                isselectimage = false;
-                              });
-                            }
-                          } else {
-                            CustomAwesomDialog().dialogBox(context, "Error...!",
-                                "Please upload photo...!", DialogType.ERROR);
-                          }
-                        },
-                        child: const Text(
-                          'Delete Item',
-                          style: TextStyle(fontSize: 20),
-                        )),
-                  ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  // Container(
+                  //   width: Size.width,
+                  //   height: 65,
+                  //   child: ElevatedButton(
+                  //       onPressed: () async {
+                  //         UtilFunction.navigateTo(context, DelatePage());
+                  //       },
+                  //       child: const Text(
+                  //         'Delete Items',
+                  //         style: TextStyle(fontSize: 20),
+                  //       )),
+                  // ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextButton(
                           onPressed: () {
@@ -286,6 +275,20 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                           },
                           child: const Text(
                             'Go Back HomePage',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 15,
+                                fontWeight: FontWeight.w800),
+                          )),
+                      TextButton(
+                          onPressed: () {
+                            // UtilFunction.navigateTo(
+                            //     context, const HomeScreen());
+                            UtilFunction.navigateTo(
+                                context, const DelatePage());
+                          },
+                          child: const Text(
+                            'Go Delete Item Page',
                             style: TextStyle(
                                 color: Colors.red,
                                 fontSize: 15,

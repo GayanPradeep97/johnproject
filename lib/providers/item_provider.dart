@@ -61,6 +61,10 @@ class ItemProvider extends ChangeNotifier {
     return false;
   }
 
+  Future<void> deleteCard(String id) async {
+    ItemController().deleteNews(id);
+  }
+
   bool inputValidation() {
     var isValid = false;
     if (_name.text.isEmpty ||

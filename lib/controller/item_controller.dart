@@ -65,4 +65,8 @@ class ItemController {
 
     return l;
   }
+
+  Future<void> deleteNews(String id) async {
+    firestore.collection('itemDetails').doc(id).delete();
+  }
 }
