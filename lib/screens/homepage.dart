@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:johnproject/models/item_model.dart';
 import 'package:johnproject/screens/admin_page.dart';
 import 'package:johnproject/utility/app_colors.dart';
@@ -128,37 +126,42 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? const Center(
                           child: CircularProgressIndicator(),
                         )
-                      : ListView.builder(
-                          // separatorBuilder: (context, index) => Container(
-                          //   height: 20,
-                          // ),
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            var data = snapshot.data![index].name;
-                            // return Card(
-                            //   size: size,
-                            //   model: snapshot.data![index],
-                            // );
+                      : (snapshot.data!.length == 0)
+                          ? const Center(
+                              child: Text(
+                                "Empty",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            )
+                          : ListView.builder(
+                              // separatorBuilder: (context, index) => Container(
+                              //   height: 20,
+                              // ),
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index) {
+                                var data = snapshot.data![index].name;
 
-                            if (search.isEmpty) {
-                              return Card(
-                                size: size,
-                                model: snapshot.data![index],
-                              );
-                            } else if (data
-                                .toString()
-                                .startsWith(search.toLowerCase())) {
-                              return Card(
-                                size: size,
-                                model: snapshot.data![index],
-                              );
-                            }
-                            return Container(
-                              height: 0,
+                                if (search.isEmpty) {
+                                  return Card(
+                                    size: size,
+                                    model: snapshot.data![index],
+                                  );
+                                } else if (data.toString().startsWith(search) ||
+                                    data
+                                        .toString()
+                                        .startsWith(search.toUpperCase()) ||
+                                    data
+                                        .toString()
+                                        .startsWith(search.toLowerCase())) {
+                                  return Card(
+                                    size: size,
+                                    model: snapshot.data![index],
+                                  );
+                                }
+                                return SizedBox();
+                              },
                             );
-                          },
-                        );
 
                   // print("-------------");
                   // print(snapshot.data!.length);
@@ -282,7 +285,7 @@ class Card extends StatelessWidget {
                           fontSize: 15, fontWeight: FontWeight.w500),
                       //style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    TextButton(onPressed: () {}, child: const Text('Delete'))
+                    //TextButton(onPressed: () {}, child: const Text('Delete'))
                   ],
                 ),
                 const SizedBox(),
