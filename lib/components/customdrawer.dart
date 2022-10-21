@@ -18,7 +18,7 @@ class CustomDrawer extends StatelessWidget {
         UserAccountsDrawerHeader(
           decoration: const BoxDecoration(color: primaycolor),
           accountName: const Text('John'),
-          accountEmail: const Text('Jogn@gmail.com'),
+          accountEmail: const Text('ionapostol.com'),
           currentAccountPicture: CircleAvatar(
             radius: 80,
             backgroundColor: kWhite,

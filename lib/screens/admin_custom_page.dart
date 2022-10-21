@@ -136,7 +136,7 @@ class _AdminCustomPageState extends State<AdminCustomPage> {
                           style: TextStyle(fontSize: 15, color: kWhite),
                         ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
                   const Text(
                     'Catogry Name',

@@ -141,10 +141,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               physics: const BouncingScrollPhysics(),
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index) {
-                                var data = snapshot.data![index].name;
+                                var data = snapshot.data![index].catagory;
+                                var data1 = snapshot.data![index].name;
+                                var data2 = snapshot.data![index].diamansion;
 
                                 if (search.isEmpty) {
                                   return Card(
+                                    catogry: snapshot.data![index],
                                     size: size,
                                     model: snapshot.data![index],
                                   );
@@ -154,8 +157,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .startsWith(search.toUpperCase()) ||
                                     data
                                         .toString()
+                                        .startsWith(search.toLowerCase()) ||
+                                    data1.toString().startsWith(search) ||
+                                    data1
+                                        .toString()
+                                        .startsWith(search.toUpperCase()) ||
+                                    data1
+                                        .toString()
+                                        .startsWith(search.toLowerCase()) ||
+                                    data2.toString().startsWith(search) ||
+                                    data2
+                                        .toString()
+                                        .startsWith(search.toUpperCase()) ||
+                                    data2
+                                        .toString()
                                         .startsWith(search.toLowerCase())) {
                                   return Card(
+                                    catogry: snapshot.data![index],
                                     size: size,
                                     model: snapshot.data![index],
                                   );
@@ -218,10 +236,12 @@ class Card extends StatelessWidget {
     Key? key,
     required this.size,
     required this.model,
+    required this.catogry,
   }) : super(key: key);
 
   final Size size;
   final ItemModel model;
+  final ItemModel catogry;
 
   @override
   Widget build(BuildContext context) {
@@ -280,7 +300,7 @@ class Card extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "${model.catagory.toString()} \n ${model.name.toString()} \n ${model.diamansion.toString()} ",
+                      " ${model.catagory.toString()} \n ${model.name.toString()} \n ${model.diamansion.toString()} ",
                       //'A0100-120X40',
                       style: GoogleFonts.getFont('Poppins',
                           fontSize: 15, fontWeight: FontWeight.w500),
