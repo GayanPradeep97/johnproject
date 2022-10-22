@@ -9,6 +9,7 @@ import 'package:johnproject/utility/uttility_function.dart';
 import 'package:johnproject/controller/item_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 
 //import 'package:responsive_grid_list/responsive_grid_list.dart';
 
@@ -247,7 +248,13 @@ class Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        UtilFunction.navigateTo(context, DetailScreen(linkk: model.image));
+        //UtilFunction.navigateTo(context, DetailScreen(linkk: model.image));
+        UtilFunction.navigateTo(
+            context,
+            ExamplePage(
+              linkk: model.image,
+              size: size,
+            ));
 
         // Navigator.push(context, MaterialPageRoute(builder: (_) {
         //   return DetailScreen(linkk: model.image);
@@ -264,7 +271,7 @@ class Card extends StatelessWidget {
             //color: Colors.white,
             // width: size.width - 20,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   height: 130,
@@ -293,6 +300,9 @@ class Card extends StatelessWidget {
                       },
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: 30,
                 ),
                 Column(
                   children: [
@@ -337,6 +347,35 @@ class DetailScreen extends StatelessWidget {
         ),
         onTap: () {
           Navigator.pop(context);
+        },
+      ),
+    );
+  }
+}
+
+class ExamplePage extends StatelessWidget {
+  ExamplePage({required this.linkk, required this.size});
+  String? linkk;
+  Size size;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: PinchZoom(
+        child: Center(
+            child: Container(
+                height: size.height / 2,
+                width: size.width,
+                color: Colors.black,
+                child: Image.network(linkk!))),
+        resetDuration: const Duration(seconds: 10),
+        maxScale: 2.5,
+        zoomEnabled: true,
+        onZoomStart: () {
+          print('Start zooming');
+        },
+        onZoomEnd: () {
+          print('Stop zooming');
         },
       ),
     );
