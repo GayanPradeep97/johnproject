@@ -58,7 +58,8 @@ dev_dependencies:
   logger: ^1.1.0
   provider: ^6.0.3
   google_fonts: ^2.1.0
-  image_viewer: ^1.5.0
+  # image_viewer: ^1.5.0
+  pinch_zoom: ^1.0.0
   
 
   
