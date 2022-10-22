@@ -329,29 +329,29 @@ class Card extends StatelessWidget {
   }
 }
 
-class DetailScreen extends StatelessWidget {
-  DetailScreen({required this.linkk});
-  String? linkk;
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: GestureDetector(
-        child: Center(
-          child: Hero(
-            tag: 'imageHero',
-            child: Image.network(
-              linkk!,
-            ),
-          ),
-        ),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
-}
+// class DetailScreen extends StatelessWidget {
+//   DetailScreen({required this.linkk});
+//   String? linkk;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       body: GestureDetector(
+//         child: Center(
+//           child: Hero(
+//             tag: 'imageHero',
+//             child: Image.network(
+//               linkk!,
+//             ),
+//           ),
+//         ),
+//         onTap: () {
+//           Navigator.pop(context);
+//         },
+//       ),
+//     );
+//   }
+// }
 
 class ExamplePage extends StatelessWidget {
   ExamplePage({required this.linkk, required this.size});
@@ -367,7 +367,7 @@ class ExamplePage extends StatelessWidget {
                 height: size.height / 2,
                 width: size.width,
                 color: Colors.black,
-                child: Image.network(linkk!))),
+                child: Image.network(fit: BoxFit.fill, linkk!))),
         resetDuration: const Duration(seconds: 10),
         maxScale: 2.5,
         zoomEnabled: true,
