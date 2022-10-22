@@ -301,8 +301,8 @@ class Card extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 30,
+                const SizedBox(
+                  width: 5,
                 ),
                 Column(
                   children: [
