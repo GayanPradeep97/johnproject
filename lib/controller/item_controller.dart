@@ -58,7 +58,7 @@ class ItemController {
   Stream<List<ItemModel>> getItemFromFirebase() {
     Stream<List<ItemModel>> l = firestore
         .collection('itemDetails')
-        .orderBy('time', descending: true)
+        .orderBy('catagory', descending: false)
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((e) => ItemModel.fromMap(e.data())).toList());

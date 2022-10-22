@@ -17,8 +17,8 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(children: [
         UserAccountsDrawerHeader(
           decoration: const BoxDecoration(color: primaycolor),
-          accountName: const Text('John'),
-          accountEmail: const Text('ionapostol.com'),
+          accountName: const Text(''),
+          accountEmail: const Text('johnchilcboutique.ro'),
           currentAccountPicture: CircleAvatar(
             radius: 80,
             backgroundColor: kWhite,

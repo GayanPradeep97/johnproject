@@ -293,9 +293,6 @@ class Card extends StatelessWidget {
                       },
                     ),
                   ),
-                  // Image.asset(
-                  //   Constants.imageAsset('first.jpg'),
-                  // ),
                 ),
                 Column(
                   children: [
