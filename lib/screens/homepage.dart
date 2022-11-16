@@ -364,7 +364,7 @@ class ExamplePage extends StatelessWidget {
       body: PinchZoom(
         child: Center(
             child: Container(
-                height: size.height / 2,
+                height: size.height / 3,
                 width: size.width,
                 color: Colors.black,
                 child: Image.network(fit: BoxFit.fill, linkk!))),

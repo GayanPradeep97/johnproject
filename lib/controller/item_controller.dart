@@ -59,12 +59,24 @@ class ItemController {
     Stream<List<ItemModel>> l = firestore
         .collection('itemDetails')
         .orderBy('catagory', descending: false)
+        .orderBy('name', descending: false)
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((e) => ItemModel.fromMap(e.data())).toList());
 
     return l;
   }
+
+  // Stream<List<ItemModel>> getItemFromFirebase2() {
+  //   Stream<List<ItemModel>> l = firestore
+  //       .collection('itemDetails')
+  //       .orderBy('name', descending: false)
+  //       .snapshots()
+  //       .map((snapshot) =>
+  //           snapshot.docs.map((e) => ItemModel.fromMap(e.data())).toList());
+
+  //   return l;
+  // }
 
   Future<void> deleteNews(String id) async {
     firestore.collection('itemDetails').doc(id).delete();
